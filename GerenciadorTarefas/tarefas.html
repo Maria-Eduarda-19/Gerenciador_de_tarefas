@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheckMate</title>
+    <link rel="stylesheet" href="tarefas.css">
+</head>
+<body>
+   <main class = "pagi">
+
+<!-- cabeçalho com nome da aplicação -->
+    <section class = "cabeçalho">
+        <header class="topo">
+            <div>
+                <div>
+                    <img src = "imagens/peçaXadrez.1.png" alt = "Imagem de uma peca de xadrez preta " width="200">
+                    <h1>CheckMate</h1>
+                    <p>Organize suas tarefas e dê <span>check</span> no seu dia</p>
+                </div>
+            </div>
+        </header>
+
+    <!-- seção progresso -->
+     <section>
+        <h2>Nível: <span id="nivel">1</span></h2>
+        <p>Checkpoints concluídos: <span id="peca">Peão</span></p>
+        <h3>100%</h3>
+        <progress id="barra" value="0" max="10"></progress>
+
+        <p>Progresso para o próximo nível</p>
+        <p>100%</p>
+        <p>CHECKMATE</p>
+    </section>
+
+    <section class = "corpo">
+        <div></div>
+    </section>
+    <section class = "add">
+        <div class = "input">
+            <input
+             type = "text"
+             id = "taskInput"
+             placerholder = "Novo Movimento"
+             />
+         <button id="addTaskBtn"> + Adicionar</button>
+        </div>
+    </section>
+    <section class = "listas">
+        <div class = "lista">
+            <h3>Movimento Pendente</h3>
+            <ul id="pendentelista"></ul>
+            <p id="mensag">Nenhuma tarefa pendente. Adicione uma nova tarefa para começar!</p>
+        </div>
+        <div class = "lista">
+            <h3>Movimento Concluído</h3>
+            <ul id="completolista"></ul>
+            <p id="mensagc">Nenhuma tarefa concluída ainda. Complete suas tarefas para ganhar um CHECKMATE!</p>
+        </div>
+    </section>
+    </section>
+   </main>
+   <script scr = "tarefas.js"></script>
+</body>
+</html>
