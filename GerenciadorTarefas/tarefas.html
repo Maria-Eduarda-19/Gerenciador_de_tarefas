@@ -43,36 +43,30 @@
           <p>Progresso para o próximo nível</p>
           <p>100%</p>
           <p>CHECKMATE</p>
-        </section>
-
-        <section class="corpo">
-          <div></div>
-        </section>
+      </section>
+      <!--Adicionar tarefa -->
         <section class="add">
           <div class="input">
-            <input type="text" id="taskInput" placerholder="Novo Movimento" />
-            <button id="addTaskBtn">+ Adicionar</button>
+          <input type="text"  class="add-taskInput" placeholder="Novo Movimento" />
+          <button id="addTaskBtn" class="addTaskBtn">+ Adicionar</button>
           </div>
-        </section>
-        <section class="listas">
-          <div class="lista">
-            <h3>Movimento Pendente</h3>
-            <ul id="pendentelista"></ul>
-            <p id="mensag">
-              Nenhuma tarefa pendente. Adicione uma nova tarefa para começar!
-            </p>
-          </div>
-          <div class="lista">
-            <h3>Movimento Concluído</h3>
-            <ul id="completolista"></ul>
-            <p id="mensagc">
-              Nenhuma tarefa concluída ainda. Complete suas tarefas para ganhar
-              um CHECKMATE!
-            </p>
-          </div>
-        </section>
+      </section>
+      <!--Listas -->
+      <section class="listas">
+        <div class="lista">
+        <h3>Movimento Pendente</h3>
+        <ul id="pendingList"></ul>
+        <p id="mensag">Nenhuma tarefa pendente. Adicione uma nova tarefa para começar!</p>
+        </div>
+
+        <div class="lista">
+        <h3>Movimento Concluído</h3>
+        <ul id="completedList"></ul>
+        <p id="mensagc"> Nenhuma tarefa concluída ainda. Complete suas tarefas para ganhar um CHECKMATE! </p>
+        </div>
+      </section>
       </section>
     </main>
-    <script scr="tarefas.js"></script>
+    <script src="tarefas.js"></script>
   </body>
 </html>
