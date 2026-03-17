@@ -28,7 +28,7 @@ body {
 }
 .header {
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 .header h1 {
   font-family: "Cinzel", serif;
@@ -44,8 +44,143 @@ body {
 .header p {
   color: var(--dourado-claro);
   font-size: 20px;
-  margin-top: 1px;
+  margin-top: -16px; 
+  color: var(--text2)
 }
+
+.cardprogress{
+  background: rgba(0,0,0,0.4);
+  padding: 20px;
+  border-radius: 25px;
+  color: white;
+  margin-bottom: 24px;
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+}
+
+.cardprogress :before{
+  content:  '';
+  position: absolute;
+  inset: 0; 
+  background-color: linear-gradient(135deg, rgba(212,160,23,.08) 0%, transparent 60%); /* gradiente dourado visivel só na diagonal superior esquerda*/
+  pointer-events: none;
+}
+
+.prog-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.icon-peca {
+  font-size: 2.6rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 8px var(--dourado)) /* brilho dourado ao redor do icone*/;
+  transition: transform .3s;
+
+}
+
+  /* Classe adicionada via JS quando o usuário sobe de nível */
+  .piece-icon.level-up-anim {
+    /* cubic-bezier personalizado cria um efeito "elástico" na animação */
+    animation: levelup .6s cubic-bezier(.36,.07,.19,.97);
+  }
+  /* A peça gira e cresce ao subir de nível, depois volta ao normal */
+  @keyframes levelup {
+    0%   { transform: scale(1)   rotate(0deg);   }
+    25%  { transform: scale(1.5) rotate(-15deg); }
+    50%  { transform: scale(1.5) rotate(15deg);  }
+    75%  { transform: scale(1.3) rotate(-5deg);  }
+    100% { transform: scale(1)   rotate(0deg);   }
+  }
+
+  /* ── Texto ao lado do ícone: nome do nível e contagem ── */
+  .prog-info h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.15rem;
+    color: var(--dourado-claro);
+  }
+  .prog-info p { color: var(--text2); font-size: .82rem; }
+ 
+  /* ── Lado direito: porcentagem e badge de nível ── */
+  .prog-direita {
+    margin-left: auto; /* Empurra para a direita dentro do flexbox */
+    text-align: right;
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-end; 
+    gap: 4px;
+  }
+  .prog-percent {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: var(--dourado);
+    min-width: 60px; /* Evita que o layout pule quando o número muda */
+  }
+ 
+  /* ── Badge "Nível X/6" ── */
+  .badge {
+    background: rgba(212,160,23,.15);
+    border: 1px solid var(--d[]);
+    color: var(--dourado-claro);
+    font-size: .7rem;
+    padding: 2px 8px;
+    border-radius: 20px; /* Totalmente arredondado (pill shape) */
+    font-family: 'Cinzel', serif;
+    letter-spacing: .05em;
+  }
+  /* Versão especial do badge no checkmate: laranja pulsante */
+  .badge.checkmate {
+    background: rgba(212,100,23,.25);
+    border-color: #ff8c00;
+    color: #ffb347;
+    animation: glow-badge 1s ease infinite alternate;
+  }
+  @keyframes glow-badge {
+    from { box-shadow: 0 0 4px  #ff8c00; }
+    to   { box-shadow: 0 0 14px #ff8c00; }
+  }
+ 
+  /* ══════════════════════════════════════════════
+     BARRA DE PROGRESSO
+     .bar-wrap = container escuro (o "trilho")
+     #progress-bar-fill = a barra dourada que cresce
+  ══════════════════════════════════════════════ */
+  .barra-prog {
+    background: rgba(0,0,0,.3);
+    border-radius: 8px;
+    height: 14px;
+    overflow: hidden;  /* Garante que a barra não vaze para fora do container */
+    margin-bottom: 10px;
+    border: 1px solid var(--border);
+  }
+  #progress-barra-fill {
+    height: 100%;
+    width: 0%;  /* Começa zerada; o JS atualiza este valor */
+    background: linear-gradient(90deg, #a0600a 0%, var(--dourado) 60%, var(--dourado-claro) 100%);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(212,160,23,.6); /* Brilho dourado na barra */
+    /* Animação suave ao crescer; cubic-bezier = curva de aceleração Material Design */
+    transition: width .6s cubic-bezier(.4,0,.2,1);
+  }
+ 
+  /* ── Ícones das peças abaixo da barra (marcadores de nível) ── */
+  .level-steps {
+    display: flex;
+    justify-content: space-between;
+    font-size: .68rem;
+    color: var(--text2);
+    margin-top: 0;
+  }
+  .level-steps span { text-align: center; flex: 1; font-size: 1rem; }
+ 
+  .checkmate-banner{
+    margin-top: 24px;
+    display: flex;
+    text-align: center;
+  }
 
 /* Adicionar tarefa */
 
@@ -56,31 +191,56 @@ body {
   margin-bottom: 24px;
 }
 
+  .add label {
+    color: var(--dourado-claro);
+    font-size: 1.2rem;
+    margin-right: 12px;
+    font-weight: 700;
+    font-family: 'Cinzel', serif;
+    white-space: nowrap; /* Impede que o texto "+" quebre linha */
+  }
+
 .add-taskInput{
   flex: 1;
-  padding: 3px;
+  padding: 10px 14px;
   border: none;
+  color: #1a0a2e;
   border-radius: 9px;
+  border: 1px solid var(--border);
   margin-right: 12px;
-  font-size: 16px;
+  font-size: .95rem;
+  font-family: 'Raleway', sans-serif;
+  outline: none;
+  font-weight: 700;
+  transition: border-color .2s;
+  width: 380px;
 }
+
+.add-taskInput:focus{border-color: var(--dourado)}
+.add-taskInput::placeholder{color:var(--text2)}
 
 .addTaskBtn{
   background: linear-gradient(180deg,#ffd86b,#d6a93c);
   border: none;
   color: #2b1a00;
+  font-family: 'Cinzel', serif;
   font-weight: bold;
-  padding: 5px 20px;
+  padding: 10px 22px;
   border-radius: 50px;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0,0,0,0.4);
   transition: 0.2s;
+}
+
+.addTaskBtn:hover {
+  background: var(--dourado-claro);
 }
 .add{
   background: rgba(0,0,0,0.4);
   padding: 20px;
   border-radius: 25px;
   color: white;
+  backdrop-filter: blur(8px)
 }
 
 .addTaskBtn:hover{
@@ -105,15 +265,155 @@ body {
   padding: 20px;
   border-radius: 25px;
   color: white;
+  margin-bottom: 24px;
+  backdrop-filter: blur(8px);
+  align-items: center ;
+}
+
+.lista h3 {
+  font-family: 'Cinzel',serif;
+  font-size: 1.2rem;
+  letter-spacing: .04rem;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#pendinglist {
+  color: var(--text);
+  align-items: center;
+}
+
+#completedList {
+  color: var(--verde);
+  align-items: center;
+}
+
+/* ── CHECKBOX ── */
+#pendingList li input[type="checkbox"],
+#completedList li input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--text);
+  border-radius: 8px;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+input[type="checkbox"]:checked {
+  background: var(--dourado);
+  border-color: var(--text);
+}
+
+input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 5.5px; top: 2px;
+  width: 5px; height: 9px;
+  border: 3px solid #0d0518;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+
+/* ── TEXTO DA TAREFA ── */
+#pendingList li span,
+#completedList li span {
+  flex: 1;
+  font-size: 15px;
+  color: var(--text);
+  transition: color 0.2s;
+}
+
+/* texto riscado para itens concluídos */
+#completedList li span {
+  color: var(--verde);
+  text-decoration: line-through;
+}
+
+/* ── BOTÃO EXCLUIR ── */
+#pendingList li button,
+#completedList li button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius:4px;
+  color: var(--vermelho);
+  font-size: 14px;
+  padding: 2px 4px;
+  transition: background 0.15s, color 0.15s;
+}
+
+#pendingList li button:hover {
+opacity: 1; background: rgba(224,85,85,.15);
 }
 
 li{
   display: flex;
-  justify-content: space-between;
+  
+  align-items: center;
   margin-bottom: 40px;
 }
 #mensag, #mensagc{
   opacity: 0.7;
   font-style: italic;
   text-align: center;
+  padding: 14px 0;
+  line-height: 1.6;
 }
+#pendingList li,
+#completedList li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px 10px 8px;
+  border: 0.5px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  background: #1a0a2e;
+  transition: border-color 0.15s;
+}
+
+#toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #d4a017;
+  color: #1a0a2e;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none; /* não bloqueia cliques */
+  z-index: 999;
+}
+
+#toast.visivel {
+  opacity: 1;
+}
+
+#pendingList li:hover,
+#completedList li:hover {
+  background-color:  #2a0f4b;
+  border-color: var(--text);
+}
+.checkmate-banner {
+    display: none; /* Invisível por padrão */
+    text-align: center;
+    padding: 24px;
+    font-family: 'Cinzel', serif;
+    font-size: 1.6rem;
+    color: var(--dourado-claro);
+    letter-spacing: .1em;
+    text-shadow: 0 0 20px var(--dourado);
+    animation: glow-badge 1s ease infinite alternate;
+  }
+  /* Quando o body tem a classe checkmate-mode, o banner aparece */
+  body.checkmate-mode .checkmate-banner { display: block; }

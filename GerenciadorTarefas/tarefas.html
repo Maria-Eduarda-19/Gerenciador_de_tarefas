@@ -17,37 +17,55 @@
       <section class="container">
         <header class="header">
           <div>
-            <img
+            <!-- <img
               src="imagens/peçaXadrez.1.png"
               alt="Imagem de uma peca de xadrez preta "
               width="200"
-            />
-            <h1>Check<span>Mate</span></h1>
+            /> -->
+            <h1>♟ Check<span>Mate</span></h1>
             <p>Organize suas tarefas e dê <strong>check</strong> no seu dia</p>
           </div>
         </header>
 
         <!-- seção progresso -->
-        <section class="card progress">
+        <section class="cardprogress">
+          <div class="prog-top">
           <div id="icon-peca" class="icon-peca">♝</div>
           <div class="prog-info">
             <h2 id="nome-peca" class="nome-peca">Peão Iniciante</h2>
-            <p>Checkpoints concluídos: <span id="peca">0</span></p>
+            <p id = "checkpoints-count">Checkpoints concluídos: <span id="peca">0</span></p>
           </div>
-          <div>
-            <h3>100%</h3>
-            <span>Nivel 1/6</span>
+          <div class="prog-direita">
+            <h3 id="prog-percent" class="prog-percent">100%</h3>
+            <span id="nivel-badge" class="badge">Nivel 1/6</span>
           </div>
-          <progress id="barra" value="0" max="10"></progress>
+          
+</div>
+            <!-- Barra progresso -->
+    <div class="barra-prog">
+      <div id="progress-barra-fill"></div>
+    </div>
 
-          <p>Progresso para o próximo nível</p>
-          <p>100%</p>
-          <p>CHECKMATE</p>
+      <!-- Ícones das peças embaixo da barra como referência visual dos níveis -->
+          <div class="level-steps">
+            <span title="Peão">♟</span>
+            <span title="Torre">♜</span>
+            <span title="Bispo">♝</span>
+            <span title="Cavalo">♞</span>
+            <span title="Rainha">♛</span>
+            <span title="Checkmate">♚</span>
+          </div>
+        </div>
+      
+        <!-- Banner celebratório — só aparece com CSS quando checkmate-mode está ativo -->
+        <div class="checkmate-banner">♚ CHECKMATE! Todas as tarefas concluídas! ♚</div>
       </section>
+
       <!--Adicionar tarefa -->
         <section class="add">
           <div class="input">
-          <input type="text"  class="add-taskInput" placeholder="Novo Movimento" />
+          <label>+ Novo Movimento</label>
+          <input type="text" id="taskInput" class="add-taskInput" placeholder="Digite sua próxima tarefa..." />
           <button id="addTaskBtn" class="addTaskBtn">+ Adicionar</button>
           </div>
       </section>
@@ -67,6 +85,7 @@
       </section>
       </section>
     </main>
+    <div id="toast"></div>
     <script src="tarefas.js"></script>
   </body>
 </html>
